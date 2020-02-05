@@ -8,7 +8,8 @@ import {
     Link
 } from 'react-router-dom'
 
-import Posts from './posts/Posts'
+import Posts from './posts/PostsScene'
+import Post from './posts/components/Post'
 import App from './App'
 
 {/* const privateRoute = ({ component: Component, subRoutes }) => (
@@ -28,14 +29,12 @@ import App from './App'
 export default function NestingExample() {
     return (
         <Router>
-          <ul>
-            <li>
-              <Link to='/'>Posts</Link>
-            </li>
-          </ul>
           <Switch>
             <Route exact path="/">
               <Posts />
+            </Route>
+            <Route path='/post/:postId'>
+              <Post />
             </Route>
           </Switch>
         </Router>
