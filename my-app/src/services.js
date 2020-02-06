@@ -3,7 +3,9 @@ import axios from 'axios'
 
 export const get_all_posts = () => 'https://jsonplaceholder.typicode.com/posts'
 export const get_post = ({postId}) => `https://jsonplaceholder.typicode.com/posts/${postId}`
-export const get_post_user = () => `https://jsonplaceholder.typicode.com/posts?userId={userId}`
+export const get_all_users = () => `https://jsonplaceholder.typicode.com/users`
+export const get_individual_user = ({userId}) => `https://jsonplaceholder.typicode.com/users/${userId}`
+export const get_post_comment = ({postId}) => `https://jsonplaceholder.typicode.com/comments?postId=${postId}`
 
 export const useDataApi = (initialUrl, initialData) => {
     const [data, setData] = useState(initialData)

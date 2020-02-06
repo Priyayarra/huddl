@@ -10,7 +10,7 @@ import {
 
 import Posts from './posts/PostsScene'
 import Post from './posts/components/PostView/PostView'
-import App from './App'
+import User from './posts/components/UserView/UserView'
 
 {/* const privateRoute = ({ component: Component, subRoutes }) => (
     <Route 
@@ -36,16 +36,17 @@ export const getRoute = (routePath, params) => {
   return basePath
 }
 
+export const postsRoute = '/'
 export const postSceneView = `/post/:postId`
+export const userSceneView = `/user/:userId`
 
 export default function NestingExample() {
     return (
         <Router>
           <Switch>
-            <Route exact path="/">
-              <Posts />
-            </Route>
+            <Route exact path={postsRoute} component={Posts} />
             <Route exact path={postSceneView} component={Post} />
+            <Route exact path={userSceneView} component={User} />
           </Switch>
         </Router>
     )
