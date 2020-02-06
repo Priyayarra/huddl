@@ -2,6 +2,12 @@ import React from 'react'
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 import MUIDataTable from 'mui-datatables'
+import { Dialog } from '@material-ui/core';
+
+import Post from './components/PostView/PostView'
+import { postSceneView, getRoute } from '../routes'
+import { compose } from 'recompose'
+import { withRouter, Link } from 'react-router-dom'
 
 class Posts extends React.Component {
     // getMuiTheme = () =>
@@ -31,8 +37,12 @@ class Posts extends React.Component {
     //             },
     //         },
     //     })
+    onRowClick = (rowData: string[], rowMeta: { dataIndex: number, rowIndex: number }) => {
+        const { history, getRelativeRoute } = this.props
+        history.push(getRoute(postSceneView, { postId: rowMeta.rowIndex + 1 }))
+    }
     render() {
-        const { posts } = this.props
+        const { posts, post } = this.props
         const options = {
             // filterType: 'dropdown',
             filter: false,
@@ -43,25 +53,30 @@ class Posts extends React.Component {
             viewColumns: false,
             selectableRows: false,
             pagination: false,
+            onRowClick: this.onRowClick
         }
         let postsData = posts.map(post => [
-            post.userId,
-            post.id,
+            // post.id,
             post.title,
-            post.body,
+            post.userId,
+            // post.body,
         ])
-        const columns = [ "User Id", "Id", "Title", "Body"]
+        const columns = ["Title", "User Id",]
         return (
-            // <MuiThemeProvider theme={this.getMuiTheme}>
+            <MuiThemeProvider theme={this.getMuiTheme}>
                 <MUIDataTable
-                    // innerRef={this.table}
+                    innerRef={this.table}
                     data={postsData}
                     columns={columns}
                     options={options}
-                    style={{ width: '100%', height: '100%' }}
                 />
-            // </MuiThemeProvider>
+                {/* {posts.map((post, index) => (
+                    <Link to={postSceneView} to={getRoute(postSceneView, { postId: post.id })} key={index}>
+                        <p>{post.id}</p>
+                    </Link>
+                ))} */}
+            </MuiThemeProvider>
         )
     }
 }
-export default Posts
+export default compose(withRouter(Posts))

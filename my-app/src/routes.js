@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom'
 
 import Posts from './posts/PostsScene'
-import Post from './posts/components/Post'
+import Post from './posts/components/PostView/PostView'
 import App from './App'
 
 {/* const privateRoute = ({ component: Component, subRoutes }) => (
@@ -26,6 +26,18 @@ import App from './App'
     </div>
 ) */}
 
+export const getRoute = (routePath, params) => {
+  console.log('routePath', routePath, 'params', params);
+  
+  let basePath = routePath
+  Object.keys(params).forEach(key => {
+    basePath = basePath.replace(`:${key}`, params[key])
+  })
+  return basePath
+}
+
+export const postSceneView = `/post/:postId`
+
 export default function NestingExample() {
     return (
         <Router>
@@ -33,9 +45,7 @@ export default function NestingExample() {
             <Route exact path="/">
               <Posts />
             </Route>
-            <Route path='/post/:postId'>
-              <Post />
-            </Route>
+            <Route exact path={postSceneView} component={Post} />
           </Switch>
         </Router>
     )
