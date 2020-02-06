@@ -6,8 +6,6 @@ import { withRouter, Link } from 'react-router-dom'
 import { postsRoute } from '../../../routes'
 
 function UserView(match) {
-    console.log('match', match);
-
     const userId = match.match.params.userId
     const [
         {
@@ -18,7 +16,6 @@ function UserView(match) {
         },
         doFetchPost
     ] = useDataApi(get_individual_user({ userId }))
-    console.log(user, user);
     return (
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '24px' }}>
             <div style={{ width: '300px', padding: '16px', border: '1px solid #eee' }}>

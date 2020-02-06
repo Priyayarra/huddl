@@ -1,12 +1,11 @@
 import React from 'react'
-import { useDataApi, get_all_posts, get_post } from '../services'
+import { useDataApi, get_all_posts } from '../services'
 import Posts from './Posts'
 
-import { compose, withHandlers } from 'recompose'
+import { compose } from 'recompose'
 import { withRouter } from 'react-router-dom'
 
 function PostsScene() {
-    const postId  = 10
     const [
         {
             data: posts = [],

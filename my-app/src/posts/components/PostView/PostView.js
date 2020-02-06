@@ -25,7 +25,6 @@ function PostScene(match) {
     },
     doFetchPostComment
   ] = useDataApi(get_post_comment({ postId }))
-  console.log('hh', postComment);
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '24px' }}>

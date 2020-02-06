@@ -12,23 +12,7 @@ import Posts from './posts/PostsScene'
 import Post from './posts/components/PostView/PostView'
 import User from './posts/components/UserView/UserView'
 
-{/* const privateRoute = ({ component: Component, subRoutes }) => (
-    <Route 
-      render={
-        <Component {...props} children={subRoutes} />
-      }
-    />
-    ); */}
-
-{/* const wrapper = ({children}) => (
-    <div style={{ height: '100%', width: '100%'}}>
-      {children}
-    </div>
-) */}
-
 export const getRoute = (routePath, params) => {
-  console.log('routePath', routePath, 'params', params);
-  
   let basePath = routePath
   Object.keys(params).forEach(key => {
     basePath = basePath.replace(`:${key}`, params[key])
@@ -51,14 +35,3 @@ export default function NestingExample() {
         </Router>
     )
 }
-
-{/* export default(
-    <Switch>
-      <Route path='/' component={Posts} />
-      <PrivateRote component={wrapper} subRoutes={(
-        <div style={{ height: '100%', overflowY: 'auto'}}>
-           <Route path="/post" component={Posts} />
-        </div>
-      )} />
-    </Switch>
-) */}
