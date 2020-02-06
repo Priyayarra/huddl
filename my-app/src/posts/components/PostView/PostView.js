@@ -26,7 +26,7 @@ function PostScene(match) {
     doFetchPostComment
   ] = useDataApi(get_post_comment({ postId }))
   console.log('hh', postComment);
-  
+
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '24px' }}>
       <div style={{ padding: '16px', border: '1px solid #eee' }}>
@@ -37,14 +37,14 @@ function PostScene(match) {
         <h4>{'Comments:'}</h4>
         {
           postComment && postComment.length ?
-          postComment.map((postComment, index) => (
-            <div key={index} style={{borderBottom: '1px solid #777'}}>
-              <p>{'Subject: ' + postComment.name}</p>
-              <p>{'Comment: ' + postComment.body}</p>
-              <p>{'Email: ' + postComment.email}</p>
-            </div>
-          )) :
-          <p>No comments data exists for this post</p>
+            postComment.map((postComment, index) => (
+              <div key={index} style={{ borderBottom: '1px solid #777' }}>
+                <p>{'Subject: ' + postComment.name}</p>
+                <p>{'Comment: ' + postComment.body}</p>
+                <p>{'Email: ' + postComment.email}</p>
+              </div>
+            )) :
+            <p>No comments data exists for this post</p>
         }
         <Link to={postsRoute}>Back to posts</Link>
       </div>
