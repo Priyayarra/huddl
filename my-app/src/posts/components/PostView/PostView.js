@@ -26,7 +26,7 @@ function PostScene(match) {
     doFetchPostComment
   ] = useDataApi(get_post_comment({ postId }))
 
-  return (
+  return isPostCommentLoading ? <p style={{ textAlign: 'center' }}>Loading</p> :
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '24px' }}>
       <div style={{ padding: '16px', border: '1px solid #eee' }}>
         <h4>{'Post Id: ' + post.id}</h4>
@@ -48,7 +48,6 @@ function PostScene(match) {
         <Link to={postsRoute}>Back to posts</Link>
       </div>
     </div>
-  )
 }
 
 export default compose(PostScene)

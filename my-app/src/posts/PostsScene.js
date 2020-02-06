@@ -15,9 +15,8 @@ function PostsScene() {
         },
         doFetchPosts,
     ] = useDataApi(get_all_posts())
-    console.log('posts', posts)
-    return (
+    return isPostsLoading ? <p style={{ textAlign: 'center' }}>Loading</p> :
         <Posts posts={posts} />
-    )
+
 }
 export default compose(withRouter(PostsScene))

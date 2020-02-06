@@ -7,7 +7,7 @@ import { Dialog } from '@material-ui/core';
 import Post from './components/PostView/PostView'
 import { postSceneView, getRoute, userSceneView } from '../routes'
 import { compose } from 'recompose'
-import { withRouter, NavLink } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 class Posts extends React.Component {
 
@@ -22,11 +22,6 @@ class Posts extends React.Component {
 
     //     history.push(getRoute(userSceneView, { userId: cellMeta.colIndex }))
     // }
-
-    onUserClick = userId => {
-        const { history } = this.props
-        history.push(getRoute(userSceneView, { userId: userId }))
-    }
 
     render() {
         const { posts, post, history } = this.props
@@ -62,7 +57,7 @@ class Posts extends React.Component {
                     filter: false,
                     search: true,
                     customBodyRender: (data, type, row) => {
-                        return <NavLink exact to={getRoute(userSceneView, { userId: data })}>{data}</NavLink>
+                        return <a onClick={getRoute(userSceneView, { userId: data })} href={getRoute(userSceneView, { userId: data })}>{data}</a>
                     },
                 },
             }
@@ -70,17 +65,14 @@ class Posts extends React.Component {
         return (
             <div style={{ padding: '16px' }}>
                 <h3>{'All Posts:'}</h3>
-                <MUIDataTable
-                    innerRef={this.table}
-                    data={postsData}
-                    columns={columns}
-                    options={options}
-                />
-                {/* {posts.map((post, index) => (
-                    <Link to={postSceneView} to={getRoute(postSceneView, { postId: post.id })} key={index}>
-                        <p>{post.id}</p>
-                    </Link>
-                ))} */}
+                <div style={{cursor: 'pointer'}}>
+                    <MUIDataTable
+                        innerRef={this.table}
+                        data={postsData}
+                        columns={columns}
+                        options={options}
+                    />
+                </div>
             </div>
         )
     }

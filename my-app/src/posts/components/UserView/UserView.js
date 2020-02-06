@@ -16,7 +16,7 @@ function UserView(match) {
         },
         doFetchPost
     ] = useDataApi(get_individual_user({ userId }))
-    return (
+    return isuserLoading ? <p style={{ textAlign: 'center' }}>Loading</p> :
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '24px' }}>
             <div style={{ width: '300px', padding: '16px', border: '1px solid #eee' }}>
                 <h4>{'User Name: ' + user.username}</h4>
@@ -27,6 +27,6 @@ function UserView(match) {
                 <Link to={postsRoute}>Back to posts</Link>
             </div>
         </div>
-    )
+
 }
 export default compose(UserView)
